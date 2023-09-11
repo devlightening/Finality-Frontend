@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Prodcut } from 'src/app/models/product';
-import { HttpClient } from '@angular/common/http';
-import { ProductResponseModel } from 'src/app/models/productResponseModel';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { concatWith } from 'rxjs';
-
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent{
   // product1 = { productId: 1, productName: 'Glass', categoryId: 1, unitPrice: 5, unitInStock: 15 }
@@ -19,7 +15,7 @@ export class ProductComponent{
   // product5 = { productId: 5, productName: 'Camera', categoryId: 1, unitPrice: 45,unitInStock: 56  }
 
 
-  products:Prodcut[] = []
+  products:Product[] = []
   dataLoaded= false;
 
   // productResponseModel:ProductResponseModel={
@@ -34,10 +30,11 @@ export class ProductComponent{
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts() {
     this.productService.getProducts().subscribe(response=>{
-      this.products=response.data
-      this.dataLoaded= true;
-    });
-  } 
+      this.products = response.data
+      this.dataLoaded = true;
+    })
+     
+  }
 }
