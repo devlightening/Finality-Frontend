@@ -7,9 +7,18 @@ import { ListResponseModule } from '../models/listResponseModule';
   providedIn: 'root'
 })
 export class ProductService {
-  apiUrl='https://localhost:44363/api/products/getall';
+  apiUrl='https://localhost:44363/api/';
+
   constructor(private httpClient:HttpClient) { }
+
   getProducts():Observable<ListResponseModule<Product>>{
-    return this.httpClient.get<ListResponseModule<Product>>(this.apiUrl)  
+    let newPath = this.apiUrl + "products/getall"
+    return this.httpClient.get<ListResponseModule<Product>>(newPath)  
     }
+
+  getProductsByCategory(categoryId:number):Observable<ListResponseModule<Product>>{
+    let newPath = this.apiUrl + "products/getbycategory?categoryId="+ categoryId
+    return this.httpClient.get<ListResponseModule<Product>>(newPath)  
+    }
+
   } 
